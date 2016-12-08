@@ -1,0 +1,31 @@
+{
+  "name": "frontoffice.nanosoft.co.za",
+  "version": "1.0.0",
+  "description": "frontoffice.nanosoft.co.za",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paulallies/frontoffice.nanosoft.co.za.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/paulallies/frontoffice.nanosoft.co.za/issues"
+  },
+  "homepage": "https://github.com/paulallies/frontoffice.nanosoft.co.za#readme",
+  "dependencies": {
+    "next": "^1.2.3",
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1",
+    "react-redux": "^4.4.6",
+    "redux": "^3.6.0",
+    "redux-logger": "^2.7.4",
+    "redux-thunk": "^2.1.0"
+  }
+}
