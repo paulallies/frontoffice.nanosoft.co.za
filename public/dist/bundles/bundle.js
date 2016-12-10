@@ -33500,6 +33500,7 @@
 	    _createClass(componentName, [{
 	        key: 'getClassActive',
 	        value: function getClassActive() {
+	
 	            return window.location.pathname === this.props.to ? "active" : "";
 	        }
 	    }, {
