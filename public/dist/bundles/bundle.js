@@ -58,7 +58,7 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _store = __webpack_require__(257);
+	var _store = __webpack_require__(262);
 	
 	var _store2 = _interopRequireDefault(_store);
 	
@@ -23241,6 +23241,10 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _redux = __webpack_require__(185);
+	
+	var _reactRedux = __webpack_require__(178);
+	
 	var _rightnav = __webpack_require__(209);
 	
 	var _rightnav2 = _interopRequireDefault(_rightnav);
@@ -23285,19 +23289,19 @@
 	
 	var _dashboard2 = _interopRequireDefault(_dashboard);
 	
-	var _task = __webpack_require__(256);
+	var _task = __webpack_require__(258);
 	
 	var _task2 = _interopRequireDefault(_task);
 	
-	var _report = __webpack_require__(270);
+	var _report = __webpack_require__(259);
 	
 	var _report2 = _interopRequireDefault(_report);
 	
-	var _invoice = __webpack_require__(271);
+	var _invoice = __webpack_require__(260);
 	
 	var _invoice2 = _interopRequireDefault(_invoice);
 	
-	var _trash = __webpack_require__(272);
+	var _trash = __webpack_require__(261);
 	
 	var _trash2 = _interopRequireDefault(_trash);
 	
@@ -23309,16 +23313,16 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var componentName = function (_Component) {
-	    _inherits(componentName, _Component);
+	var App = function (_Component) {
+	    _inherits(App, _Component);
 	
-	    function componentName() {
-	        _classCallCheck(this, componentName);
+	    function App() {
+	        _classCallCheck(this, App);
 	
-	        return _possibleConstructorReturn(this, (componentName.__proto__ || Object.getPrototypeOf(componentName)).apply(this, arguments));
+	        return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
 	    }
 	
-	    _createClass(componentName, [{
+	    _createClass(App, [{
 	        key: 'render',
 	        value: function render() {
 	            return _react2.default.createElement(
@@ -23341,7 +23345,7 @@
 	                        _react2.default.createElement(
 	                            'div',
 	                            { className: 'wrapper' },
-	                            _react2.default.createElement(_leftnav2.default, null),
+	                            _react2.default.createElement(_leftnav2.default, { account: this.props.account }),
 	                            _react2.default.createElement(_Match2.default, { exactly: true, pattern: '/', component: _dashboard2.default }),
 	                            _react2.default.createElement(_Match2.default, { pattern: '/product', component: _product2.default }),
 	                            _react2.default.createElement(_Match2.default, { pattern: '/deal', component: _deal2.default }),
@@ -23361,10 +23365,21 @@
 	        }
 	    }]);
 	
-	    return componentName;
+	    return App;
 	}(_react.Component);
 	
-	exports.default = componentName;
+	var mapStateToProps = function mapStateToProps(state) {
+	    return {
+	        account: state.account
+	
+	    };
+	};
+	
+	var matchDispatchToProps = function matchDispatchToProps(dispatch) {
+	    return (0, _redux.bindActionCreators)({}, dispatch);
+	};
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, matchDispatchToProps)(App);
 
 /***/ },
 /* 209 */
@@ -23867,7 +23882,7 @@
 	                                'div',
 	                                { className: 'col col s4 m4 l4' },
 	                                ' ',
-	                                _react2.default.createElement('img', { src: 'images/avatarfemale.jpg', alt: true, className: 'circle responsive-img valign profile-image' }),
+	                                _react2.default.createElement('img', { src: this.props.account.profile_pic, alt: true, className: 'circle responsive-img valign profile-image' }),
 	                                ' '
 	                            ),
 	                            _react2.default.createElement(
@@ -23933,17 +23948,16 @@
 	                                        ' '
 	                                    )
 	                                ),
-	                                ' ',
 	                                _react2.default.createElement(
 	                                    'a',
 	                                    { className: 'btn-flat dropdown-button waves-effect waves-light white-text profile-btn', href: '#', 'data-activates': 'profile-dropdown' },
-	                                    'Jacqi Stevens',
+	                                    '' + this.props.account.firstname,
 	                                    _react2.default.createElement('i', { className: 'mdi-navigation-arrow-drop-down right' })
 	                                ),
 	                                _react2.default.createElement(
 	                                    'p',
 	                                    { className: 'user-roal' },
-	                                    'Administrator'
+	                                    this.props.account.role
 	                                )
 	                            )
 	                        )
@@ -28209,7 +28223,7 @@
 	        value: function render() {
 	            return _react2.default.createElement(
 	                "div",
-	                { className: "container" },
+	                { id: "content" },
 	                _react2.default.createElement(
 	                    "div",
 	                    { id: "breadcrumbs-wrapper" },
@@ -28239,11 +28253,15 @@
 	                                    _react2.default.createElement(
 	                                        "li",
 	                                        null,
-	                                        "Admin"
+	                                        _react2.default.createElement(
+	                                            "a",
+	                                            { href: "#" },
+	                                            "Admin"
+	                                        )
 	                                    ),
 	                                    _react2.default.createElement(
 	                                        "li",
-	                                        null,
+	                                        { className: "active" },
 	                                        "Product"
 	                                    )
 	                                )
@@ -28412,7 +28430,7 @@
 /* 255 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -28423,6 +28441,14 @@
 	var _react = __webpack_require__(1);
 	
 	var _react2 = _interopRequireDefault(_react);
+	
+	var _redux = __webpack_require__(185);
+	
+	var _actions = __webpack_require__(256);
+	
+	var _actions2 = _interopRequireDefault(_actions);
+	
+	var _reactRedux = __webpack_require__(178);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -28459,7 +28485,7 @@
 	    }
 	
 	    _createClass(DashBoard, [{
-	        key: "componentDidMount",
+	        key: 'componentDidMount',
 	        value: function componentDidMount() {
 	            var trendingLineChart = document.getElementById("trending-line-chart").getContext("2d");
 	            this.setState({
@@ -28499,483 +28525,130 @@
 	                    responsive: true
 	                })
 	            });
-	            // setInterval(() => {
-	            //     // Get a random index point
-	            //     var indexToUpdate = Math.round(Math.random() * (this.state.data.labels.length - 1));
-	            //     if (typeof trendingLineChart != "undefined") {
-	            //         // Update one of the points in the second dataset
-	            //         if (trendingLineChart.datasets[0].points[indexToUpdate].value) {
-	            //             trendingLineChart.datasets[0].points[indexToUpdate].value = Math.round(Math.random() * 100);
-	            //         }
-	            //         if (trendingLineChart.datasets[1].points[indexToUpdate].value) {
-	            //             trendingLineChart.datasets[1].points[indexToUpdate].value = Math.round(Math.random() * 100);
-	            //         }
-	            //         trendingLineChart.update();
-	            //     }
-	
-	
-	            // }, 2000);
 	        }
 	    }, {
-	        key: "render",
+	        key: 'render',
 	        value: function render() {
 	            return _react2.default.createElement(
-	                "div",
-	                { className: "container" },
+	                'div',
+	                { className: 'container' },
 	                _react2.default.createElement(
-	                    "div",
-	                    { id: "chart-dashboard" },
+	                    'div',
+	                    { id: 'chart-dashboard' },
 	                    _react2.default.createElement(
-	                        "div",
-	                        { className: "row" },
+	                        'div',
+	                        { className: 'row' },
 	                        _react2.default.createElement(
-	                            "div",
-	                            { className: "col s12 m12 l12" },
+	                            'div',
+	                            { className: 'col s12 m12 l12' },
 	                            _react2.default.createElement(
-	                                "div",
-	                                { className: "card" },
+	                                'div',
+	                                { className: 'card' },
 	                                _react2.default.createElement(
-	                                    "div",
-	                                    { className: "card-move-up waves-effect waves-block waves-light" },
+	                                    'div',
+	                                    { className: 'card-move-up waves-effect waves-block waves-light' },
 	                                    _react2.default.createElement(
-	                                        "div",
-	                                        { className: "move-up cyan darken-1" },
+	                                        'div',
+	                                        { className: 'move-up cyan darken-1' },
 	                                        _react2.default.createElement(
-	                                            "div",
+	                                            'div',
 	                                            null,
 	                                            _react2.default.createElement(
-	                                                "span",
-	                                                { className: "chart-title white-text" },
-	                                                "Monthly Revenue"
+	                                                'span',
+	                                                { className: 'chart-title white-text' },
+	                                                'Monthly Revenue'
 	                                            ),
 	                                            _react2.default.createElement(
-	                                                "div",
-	                                                { className: "chart-revenue cyan darken-2 white-text" },
+	                                                'div',
+	                                                { className: 'chart-revenue cyan darken-2 white-text' },
 	                                                _react2.default.createElement(
-	                                                    "p",
-	                                                    { className: "chart-revenue-total" },
-	                                                    "4,500.85"
+	                                                    'p',
+	                                                    { className: 'chart-revenue-total' },
+	                                                    '4,500.85'
 	                                                ),
 	                                                _react2.default.createElement(
-	                                                    "p",
-	                                                    { className: "chart-revenue-per" },
-	                                                    _react2.default.createElement("i", { className: "mdi-navigation-arrow-drop-down" }),
-	                                                    " 21.80 %"
+	                                                    'p',
+	                                                    { className: 'chart-revenue-per' },
+	                                                    _react2.default.createElement('i', { className: 'mdi-navigation-arrow-drop-down' }),
+	                                                    ' 21.80 %'
 	                                                )
 	                                            )
 	                                        ),
 	                                        _react2.default.createElement(
-	                                            "div",
-	                                            { className: "trending-line-chart-wrapper" },
-	                                            _react2.default.createElement("canvas", { id: "trending-line-chart", height: 462, width: 1984, style: { width: 992, height: 231 } })
+	                                            'div',
+	                                            { className: 'trending-line-chart-wrapper' },
+	                                            _react2.default.createElement('canvas', { id: 'trending-line-chart', height: 462, width: 1984, style: { width: 992, height: 231 } })
 	                                        )
 	                                    )
 	                                ),
 	                                _react2.default.createElement(
-	                                    "div",
-	                                    { className: "card-content" },
+	                                    'div',
+	                                    { className: 'card-content' },
 	                                    _react2.default.createElement(
-	                                        "a",
-	                                        { className: "btn-floating btn-move-up waves-effect waves-light darken-2 right" },
-	                                        _react2.default.createElement("i", { className: "mdi-content-add activator" })
+	                                        'a',
+	                                        { className: 'btn-floating btn-move-up waves-effect waves-light darken-2 right' },
+	                                        _react2.default.createElement('i', { className: 'mdi-content-add activator' })
 	                                    )
 	                                ),
 	                                _react2.default.createElement(
-	                                    "div",
-	                                    { className: "card-reveal" },
+	                                    'div',
+	                                    { className: 'card-reveal' },
 	                                    _react2.default.createElement(
-	                                        "span",
-	                                        { className: "card-title grey-text text-darken-4" },
-	                                        "Revenue by Month ",
-	                                        _react2.default.createElement("i", { className: "mdi-navigation-close right" })
+	                                        'span',
+	                                        { className: 'card-title grey-text text-darken-4' },
+	                                        'Revenue by Month ',
+	                                        _react2.default.createElement('i', { className: 'mdi-navigation-close right' })
 	                                    ),
 	                                    _react2.default.createElement(
-	                                        "table",
-	                                        { className: "responsive-table" },
+	                                        'table',
+	                                        { className: 'responsive-table' },
 	                                        _react2.default.createElement(
-	                                            "thead",
+	                                            'thead',
 	                                            null,
 	                                            _react2.default.createElement(
-	                                                "tr",
+	                                                'tr',
 	                                                null,
 	                                                _react2.default.createElement(
-	                                                    "th",
-	                                                    { "data-field": "id" },
-	                                                    "ID"
+	                                                    'th',
+	                                                    { 'data-field': 'id' },
+	                                                    'ID'
 	                                                ),
 	                                                _react2.default.createElement(
-	                                                    "th",
-	                                                    { "data-field": "month" },
-	                                                    "Month"
+	                                                    'th',
+	                                                    { 'data-field': 'month' },
+	                                                    'Customer'
 	                                                ),
 	                                                _react2.default.createElement(
-	                                                    "th",
-	                                                    { "data-field": "item-sold" },
-	                                                    "Item Sold"
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    "th",
-	                                                    { "data-field": "item-price" },
-	                                                    "Item Price"
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    "th",
-	                                                    { "data-field": "total-profit" },
-	                                                    "Total Profit"
+	                                                    'th',
+	                                                    { 'data-field': 'item-price' },
+	                                                    'Revenue'
 	                                                )
 	                                            )
 	                                        ),
 	                                        _react2.default.createElement(
-	                                            "tbody",
+	                                            'tbody',
 	                                            null,
-	                                            _react2.default.createElement(
-	                                                "tr",
-	                                                null,
-	                                                _react2.default.createElement(
-	                                                    "td",
+	                                            this.props.data.map(function (item, i) {
+	                                                return _react2.default.createElement(
+	                                                    'tr',
 	                                                    null,
-	                                                    "1"
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    "td",
-	                                                    null,
-	                                                    "January"
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    "td",
-	                                                    null,
-	                                                    "122"
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    "td",
-	                                                    null,
-	                                                    "100"
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    "td",
-	                                                    null,
-	                                                    "$122,00.00"
-	                                                )
-	                                            ),
-	                                            _react2.default.createElement(
-	                                                "tr",
-	                                                null,
-	                                                _react2.default.createElement(
-	                                                    "td",
-	                                                    null,
-	                                                    "2"
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    "td",
-	                                                    null,
-	                                                    "February"
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    "td",
-	                                                    null,
-	                                                    "122"
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    "td",
-	                                                    null,
-	                                                    "100"
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    "td",
-	                                                    null,
-	                                                    "$122,00.00"
-	                                                )
-	                                            ),
-	                                            _react2.default.createElement(
-	                                                "tr",
-	                                                null,
-	                                                _react2.default.createElement(
-	                                                    "td",
-	                                                    null,
-	                                                    "3"
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    "td",
-	                                                    null,
-	                                                    "March"
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    "td",
-	                                                    null,
-	                                                    "122"
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    "td",
-	                                                    null,
-	                                                    "100"
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    "td",
-	                                                    null,
-	                                                    "$122,00.00"
-	                                                )
-	                                            ),
-	                                            _react2.default.createElement(
-	                                                "tr",
-	                                                null,
-	                                                _react2.default.createElement(
-	                                                    "td",
-	                                                    null,
-	                                                    "4"
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    "td",
-	                                                    null,
-	                                                    "April"
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    "td",
-	                                                    null,
-	                                                    "122"
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    "td",
-	                                                    null,
-	                                                    "100"
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    "td",
-	                                                    null,
-	                                                    "$122,00.00"
-	                                                )
-	                                            ),
-	                                            _react2.default.createElement(
-	                                                "tr",
-	                                                null,
-	                                                _react2.default.createElement(
-	                                                    "td",
-	                                                    null,
-	                                                    "5"
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    "td",
-	                                                    null,
-	                                                    "May"
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    "td",
-	                                                    null,
-	                                                    "122"
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    "td",
-	                                                    null,
-	                                                    "100"
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    "td",
-	                                                    null,
-	                                                    "$122,00.00"
-	                                                )
-	                                            ),
-	                                            _react2.default.createElement(
-	                                                "tr",
-	                                                null,
-	                                                _react2.default.createElement(
-	                                                    "td",
-	                                                    null,
-	                                                    "6"
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    "td",
-	                                                    null,
-	                                                    "June"
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    "td",
-	                                                    null,
-	                                                    "122"
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    "td",
-	                                                    null,
-	                                                    "100"
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    "td",
-	                                                    null,
-	                                                    "$122,00.00"
-	                                                )
-	                                            ),
-	                                            _react2.default.createElement(
-	                                                "tr",
-	                                                null,
-	                                                _react2.default.createElement(
-	                                                    "td",
-	                                                    null,
-	                                                    "7"
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    "td",
-	                                                    null,
-	                                                    "July"
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    "td",
-	                                                    null,
-	                                                    "122"
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    "td",
-	                                                    null,
-	                                                    "100"
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    "td",
-	                                                    null,
-	                                                    "$122,00.00"
-	                                                )
-	                                            ),
-	                                            _react2.default.createElement(
-	                                                "tr",
-	                                                null,
-	                                                _react2.default.createElement(
-	                                                    "td",
-	                                                    null,
-	                                                    "8"
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    "td",
-	                                                    null,
-	                                                    "August"
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    "td",
-	                                                    null,
-	                                                    "122"
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    "td",
-	                                                    null,
-	                                                    "100"
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    "td",
-	                                                    null,
-	                                                    "$122,00.00"
-	                                                )
-	                                            ),
-	                                            _react2.default.createElement(
-	                                                "tr",
-	                                                null,
-	                                                _react2.default.createElement(
-	                                                    "td",
-	                                                    null,
-	                                                    "9"
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    "td",
-	                                                    null,
-	                                                    "Septmber"
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    "td",
-	                                                    null,
-	                                                    "122"
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    "td",
-	                                                    null,
-	                                                    "100"
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    "td",
-	                                                    null,
-	                                                    "$122,00.00"
-	                                                )
-	                                            ),
-	                                            _react2.default.createElement(
-	                                                "tr",
-	                                                null,
-	                                                _react2.default.createElement(
-	                                                    "td",
-	                                                    null,
-	                                                    "10"
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    "td",
-	                                                    null,
-	                                                    "Octomber"
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    "td",
-	                                                    null,
-	                                                    "122"
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    "td",
-	                                                    null,
-	                                                    "100"
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    "td",
-	                                                    null,
-	                                                    "$122,00.00"
-	                                                )
-	                                            ),
-	                                            _react2.default.createElement(
-	                                                "tr",
-	                                                null,
-	                                                _react2.default.createElement(
-	                                                    "td",
-	                                                    null,
-	                                                    "11"
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    "td",
-	                                                    null,
-	                                                    "November"
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    "td",
-	                                                    null,
-	                                                    "122"
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    "td",
-	                                                    null,
-	                                                    "100"
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    "td",
-	                                                    null,
-	                                                    "$122,00.00"
-	                                                )
-	                                            ),
-	                                            _react2.default.createElement(
-	                                                "tr",
-	                                                null,
-	                                                _react2.default.createElement(
-	                                                    "td",
-	                                                    null,
-	                                                    "12"
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    "td",
-	                                                    null,
-	                                                    "December"
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    "td",
-	                                                    null,
-	                                                    "122"
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    "td",
-	                                                    null,
-	                                                    "100"
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    "td",
-	                                                    null,
-	                                                    "$122,00.00"
-	                                                )
-	                                            )
+	                                                    _react2.default.createElement(
+	                                                        'td',
+	                                                        null,
+	                                                        i + 1
+	                                                    ),
+	                                                    _react2.default.createElement(
+	                                                        'td',
+	                                                        null,
+	                                                        item.customer
+	                                                    ),
+	                                                    _react2.default.createElement(
+	                                                        'td',
+	                                                        null,
+	                                                        item.revenue
+	                                                    )
+	                                                );
+	                                            })
 	                                        )
 	                                    )
 	                                )
@@ -28990,10 +28663,83 @@
 	    return DashBoard;
 	}(_react.Component);
 	
-	exports.default = DashBoard;
+	var mapStateToProps = function mapStateToProps(state) {
+	    return {
+	        account: state.account,
+	        data: []
+	
+	    };
+	};
+	
+	var matchDispatchToProps = function matchDispatchToProps(dispatch) {
+	    return (0, _redux.bindActionCreators)({
+	        set_account: _actions2.default.set_account
+	
+	    }, dispatch);
+	};
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, matchDispatchToProps)(DashBoard);
 
 /***/ },
 /* 256 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _constants = __webpack_require__(257);
+	
+	var _constants2 = _interopRequireDefault(_constants);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var Actions = {
+	    set_account: function set_account(data) {
+	        return {
+	            type: _constants2.default.SET_ACCOUNT,
+	            payload: data
+	        };
+	    },
+	    set_active_link: function set_active_link(data) {
+	        return {
+	            type: _constants2.default.SET_ACTIVE_LINK,
+	            payload: data
+	        };
+	    },
+	    set_members: function set_members(data) {
+	        return {
+	            type: _constants2.default.SET_MEMBERS,
+	            payload: data
+	        };
+	    },
+	    logout: function logout() {
+	        firebase.auth().signOut();
+	    }
+	};
+	
+	exports.default = Actions;
+
+/***/ },
+/* 257 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = {
+	    SET_CUSTOMERS: "SET_CUSTOMERS",
+	    SET_ACCOUNT: "SET_ACCOUNT",
+	    SET_MEMBERS: "SET_MEMBERS",
+	    SET_ACTIVE_LINK: "SET_ACTIVE_LINK"
+	};
+
+/***/ },
+/* 258 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29042,7 +28788,154 @@
 	exports.default = TaskList;
 
 /***/ },
-/* 257 */
+/* 259 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Reports = function (_Component) {
+	    _inherits(Reports, _Component);
+	
+	    function Reports() {
+	        _classCallCheck(this, Reports);
+	
+	        return _possibleConstructorReturn(this, (Reports.__proto__ || Object.getPrototypeOf(Reports)).apply(this, arguments));
+	    }
+	
+	    _createClass(Reports, [{
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                'Reports'
+	            );
+	        }
+	    }]);
+	
+	    return Reports;
+	}(_react.Component);
+	
+	exports.default = Reports;
+
+/***/ },
+/* 260 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var InvoiceList = function (_Component) {
+	    _inherits(InvoiceList, _Component);
+	
+	    function InvoiceList() {
+	        _classCallCheck(this, InvoiceList);
+	
+	        return _possibleConstructorReturn(this, (InvoiceList.__proto__ || Object.getPrototypeOf(InvoiceList)).apply(this, arguments));
+	    }
+	
+	    _createClass(InvoiceList, [{
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                'Invoices'
+	            );
+	        }
+	    }]);
+	
+	    return InvoiceList;
+	}(_react.Component);
+	
+	exports.default = InvoiceList;
+
+/***/ },
+/* 261 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Trash = function (_Component) {
+	    _inherits(Trash, _Component);
+	
+	    function Trash() {
+	        _classCallCheck(this, Trash);
+	
+	        return _possibleConstructorReturn(this, (Trash.__proto__ || Object.getPrototypeOf(Trash)).apply(this, arguments));
+	    }
+	
+	    _createClass(Trash, [{
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                'Trash'
+	            );
+	        }
+	    }]);
+	
+	    return Trash;
+	}(_react.Component);
+	
+	exports.default = Trash;
+
+/***/ },
+/* 262 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -29053,31 +28946,35 @@
 	
 	var _redux = __webpack_require__(185);
 	
-	var _reduxLogger = __webpack_require__(258);
+	var _reduxLogger = __webpack_require__(263);
 	
 	var _reduxLogger2 = _interopRequireDefault(_reduxLogger);
 	
-	var _reduxThunk = __webpack_require__(264);
+	var _reduxThunk = __webpack_require__(269);
 	
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 	
-	var _constants = __webpack_require__(265);
+	var _constants = __webpack_require__(257);
 	
 	var _constants2 = _interopRequireDefault(_constants);
 	
-	var _customers = __webpack_require__(266);
+	var _customers = __webpack_require__(270);
 	
 	var _customers2 = _interopRequireDefault(_customers);
 	
-	var _members = __webpack_require__(267);
+	var _deals = __webpack_require__(271);
+	
+	var _deals2 = _interopRequireDefault(_deals);
+	
+	var _members = __webpack_require__(272);
 	
 	var _members2 = _interopRequireDefault(_members);
 	
-	var _active_link = __webpack_require__(268);
+	var _active_link = __webpack_require__(273);
 	
 	var _active_link2 = _interopRequireDefault(_active_link);
 	
-	var _account = __webpack_require__(269);
+	var _account = __webpack_require__(274);
 	
 	var _account2 = _interopRequireDefault(_account);
 	
@@ -29085,6 +28982,7 @@
 	
 	var reducer = (0, _redux.combineReducers)({
 	    customers: _customers2.default,
+	    deals: _deals2.default,
 	    active_link: _active_link2.default,
 	    members: _members2.default,
 	    account: _account2.default
@@ -29095,7 +28993,7 @@
 	exports.default = store;
 
 /***/ },
-/* 258 */
+/* 263 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29106,11 +29004,11 @@
 	  value: true
 	});
 	
-	var _core = __webpack_require__(259);
+	var _core = __webpack_require__(264);
 	
-	var _helpers = __webpack_require__(260);
+	var _helpers = __webpack_require__(265);
 	
-	var _defaults = __webpack_require__(263);
+	var _defaults = __webpack_require__(268);
 	
 	var _defaults2 = _interopRequireDefault(_defaults);
 	
@@ -29213,7 +29111,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 259 */
+/* 264 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29223,9 +29121,9 @@
 	});
 	exports.printBuffer = printBuffer;
 	
-	var _helpers = __webpack_require__(260);
+	var _helpers = __webpack_require__(265);
 	
-	var _diff = __webpack_require__(261);
+	var _diff = __webpack_require__(266);
 	
 	var _diff2 = _interopRequireDefault(_diff);
 	
@@ -29354,7 +29252,7 @@
 	}
 
 /***/ },
-/* 260 */
+/* 265 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -29378,7 +29276,7 @@
 	var timer = exports.timer = typeof performance !== "undefined" && performance !== null && typeof performance.now === "function" ? performance : Date;
 
 /***/ },
-/* 261 */
+/* 266 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29388,7 +29286,7 @@
 	});
 	exports.default = diffLogger;
 	
-	var _deepDiff = __webpack_require__(262);
+	var _deepDiff = __webpack_require__(267);
 	
 	var _deepDiff2 = _interopRequireDefault(_deepDiff);
 	
@@ -29474,7 +29372,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 262 */
+/* 267 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(global) {/*!
@@ -29903,7 +29801,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 263 */
+/* 268 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -29954,7 +29852,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 264 */
+/* 269 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -29982,23 +29880,7 @@
 	exports['default'] = thunk;
 
 /***/ },
-/* 265 */
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.default = {
-	    SET_CUSTOMERS: "SET_CUSTOMERS",
-	    SET_ACCOUNT: "SET_ACCOUNT",
-	    SET_MEMBERS: "SET_MEMBERS",
-	    SET_ACTIVE_LINK: "SET_ACTIVE_LINK"
-	};
-
-/***/ },
-/* 266 */
+/* 270 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30007,7 +29889,7 @@
 	    value: true
 	});
 	
-	var _constants = __webpack_require__(265);
+	var _constants = __webpack_require__(257);
 	
 	var _constants2 = _interopRequireDefault(_constants);
 	
@@ -30028,7 +29910,42 @@
 	};
 
 /***/ },
-/* 267 */
+/* 271 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _constants = __webpack_require__(257);
+	
+	var _constants2 = _interopRequireDefault(_constants);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var init_data = [{
+	    customer: "Apple",
+	    revenue: 1000
+	}];
+	
+	exports.default = function () {
+	    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : init_data;
+	    var action = arguments[1];
+	
+	    switch (action.type) {
+	
+	        case _constants2.default.SET_DEALS:
+	            return action.payload;
+	
+	        default:
+	            return state;
+	    }
+	};
+
+/***/ },
+/* 272 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30037,7 +29954,7 @@
 	    value: true
 	});
 	
-	var _constants = __webpack_require__(265);
+	var _constants = __webpack_require__(257);
 	
 	var _constants2 = _interopRequireDefault(_constants);
 	
@@ -30058,7 +29975,7 @@
 	};
 
 /***/ },
-/* 268 */
+/* 273 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -30067,7 +29984,7 @@
 	    value: true
 	});
 	
-	var _constants = __webpack_require__(265);
+	var _constants = __webpack_require__(257);
 	
 	var _constants2 = _interopRequireDefault(_constants);
 	
@@ -30088,23 +30005,30 @@
 	};
 
 /***/ },
-/* 269 */
+/* 274 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
 	
-	var _constants = __webpack_require__(265);
+	var _constants = __webpack_require__(257);
 	
 	var _constants2 = _interopRequireDefault(_constants);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	var init = {
+	    firstname: "Jacqi",
+	    surname: "Stevens",
+	    role: "Administrator",
+	    profile_pic: "images/avatarfemale.jpg"
+	};
+	
 	exports.default = function () {
-	    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+	    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : init;
 	    var action = arguments[1];
 	
 	    switch (action.type) {
@@ -30116,153 +30040,6 @@
 	            return state;
 	    }
 	};
-
-/***/ },
-/* 270 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var Reports = function (_Component) {
-	    _inherits(Reports, _Component);
-	
-	    function Reports() {
-	        _classCallCheck(this, Reports);
-	
-	        return _possibleConstructorReturn(this, (Reports.__proto__ || Object.getPrototypeOf(Reports)).apply(this, arguments));
-	    }
-	
-	    _createClass(Reports, [{
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'div',
-	                null,
-	                'Reports'
-	            );
-	        }
-	    }]);
-	
-	    return Reports;
-	}(_react.Component);
-	
-	exports.default = Reports;
-
-/***/ },
-/* 271 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var InvoiceList = function (_Component) {
-	    _inherits(InvoiceList, _Component);
-	
-	    function InvoiceList() {
-	        _classCallCheck(this, InvoiceList);
-	
-	        return _possibleConstructorReturn(this, (InvoiceList.__proto__ || Object.getPrototypeOf(InvoiceList)).apply(this, arguments));
-	    }
-	
-	    _createClass(InvoiceList, [{
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'div',
-	                null,
-	                'Invoices'
-	            );
-	        }
-	    }]);
-	
-	    return InvoiceList;
-	}(_react.Component);
-	
-	exports.default = InvoiceList;
-
-/***/ },
-/* 272 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var Trash = function (_Component) {
-	    _inherits(Trash, _Component);
-	
-	    function Trash() {
-	        _classCallCheck(this, Trash);
-	
-	        return _possibleConstructorReturn(this, (Trash.__proto__ || Object.getPrototypeOf(Trash)).apply(this, arguments));
-	    }
-	
-	    _createClass(Trash, [{
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'div',
-	                null,
-	                'Trash'
-	            );
-	        }
-	    }]);
-	
-	    return Trash;
-	}(_react.Component);
-	
-	exports.default = Trash;
 
 /***/ }
 /******/ ]);
