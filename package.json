@@ -20,7 +20,9 @@
   },
   "homepage": "https://github.com/paulallies/frontoffice.nanosoft.co.za#readme",
   "dependencies": {
+    "moment": "^2.17.1",
     "next": "^1.2.3",
+    "numeral": "^2.0.1",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
     "react-redux": "^4.4.6",

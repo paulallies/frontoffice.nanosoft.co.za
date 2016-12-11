@@ -2,8 +2,13 @@ nav {
     background-color: #1A535C
 }
 
-footer.page-footer {
+
+/*footer.page-footer {
     position: absolute;
     bottom: 0;
     width: 100%
+}*/
+
+select[name='data-table-simple_length'] {
+    display: block
 }
