@@ -12,3 +12,7 @@ nav {
 select[name='data-table-simple_length'] {
     display: block
 }
+
+.dark {
+    background-color: #1A535C
+}
