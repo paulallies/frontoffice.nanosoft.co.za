@@ -43755,6 +43755,10 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _invoice_template = __webpack_require__(388);
+	
+	var _invoice_template2 = _interopRequireDefault(_invoice_template);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -43766,24 +43770,27 @@
 	var InvoiceList = function (_Component) {
 	    _inherits(InvoiceList, _Component);
 	
-	    function InvoiceList() {
+	    function InvoiceList(props) {
 	        _classCallCheck(this, InvoiceList);
 	
-	        return _possibleConstructorReturn(this, (InvoiceList.__proto__ || Object.getPrototypeOf(InvoiceList)).apply(this, arguments));
+	        var _this = _possibleConstructorReturn(this, (InvoiceList.__proto__ || Object.getPrototypeOf(InvoiceList)).call(this, props));
+	
+	        _this.state = {
+	            data: {}
+	        };
+	        return _this;
 	    }
 	
 	    _createClass(InvoiceList, [{
 	        key: 'open',
 	        value: function open() {
 	
-	            var pdf = new jsPDF('p', 'pt', 'letter');
-	            pdf.text('Hello world!', 10, 10);
-	
-	            var iframe = document.createElement('iframe');
-	            iframe.setAttribute('style', 'position:absolute;top:0;right:0;height:100%; width:600px');
-	            document.body.appendChild(iframe);
-	            pdf.fromHTML($('#invoice').get(0));
-	            iframe.src = pdf.output('datauristring');
+	            var docDefinition = (0, _invoice_template2.default)(this.state.data);
+	            var iframe = document.getElementById("pdfoutput");
+	            console.log(docDefinition);
+	            iframe.src = pdfMake.createPdf(docDefinition).getDataUrl(function (result) {
+	                iframe.src = result;
+	            });
 	        }
 	    }, {
 	        key: 'render',
@@ -43826,538 +43833,531 @@
 	                    { className: 'container' },
 	                    _react2.default.createElement(
 	                        'div',
-	                        { id: 'invoice' },
+	                        { className: 'card' },
 	                        _react2.default.createElement(
 	                            'div',
-	                            { className: 'invoice-header' },
+	                            { className: 'container' },
 	                            _react2.default.createElement(
 	                                'div',
-	                                { className: 'row section' },
+	                                { id: 'invoice' },
 	                                _react2.default.createElement(
 	                                    'div',
-	                                    { className: 'col s12 m6 l6' },
-	                                    _react2.default.createElement('img', { src: 'images/generic-logo.png', alt: 'company logo' }),
+	                                    { className: 'invoice-header' },
 	                                    _react2.default.createElement(
-	                                        'p',
-	                                        null,
-	                                        'To,',
-	                                        _react2.default.createElement('br', null),
+	                                        'div',
+	                                        { className: 'row section' },
 	                                        _react2.default.createElement(
-	                                            'span',
-	                                            { className: 'strong' },
-	                                            'Jonathan Doe'
+	                                            'div',
+	                                            { className: 'col s12 m6 l6' },
+	                                            _react2.default.createElement('img', { src: 'images/generic-logo.png', alt: 'company logo' }),
+	                                            _react2.default.createElement(
+	                                                'p',
+	                                                null,
+	                                                'To,',
+	                                                _react2.default.createElement('br', null),
+	                                                _react2.default.createElement(
+	                                                    'span',
+	                                                    { className: 'strong' },
+	                                                    'Jonathan Doe'
+	                                                ),
+	                                                _react2.default.createElement('br', null),
+	                                                _react2.default.createElement(
+	                                                    'span',
+	                                                    null,
+	                                                    '125, ABC Street,'
+	                                                ),
+	                                                _react2.default.createElement('br', null),
+	                                                _react2.default.createElement(
+	                                                    'span',
+	                                                    null,
+	                                                    'New Yourk, USA'
+	                                                ),
+	                                                _react2.default.createElement('br', null),
+	                                                _react2.default.createElement(
+	                                                    'span',
+	                                                    null,
+	                                                    '+91-(444)-(333)-(221)'
+	                                                )
+	                                            )
 	                                        ),
-	                                        _react2.default.createElement('br', null),
 	                                        _react2.default.createElement(
-	                                            'span',
-	                                            null,
-	                                            '125, ABC Street,'
-	                                        ),
-	                                        _react2.default.createElement('br', null),
-	                                        _react2.default.createElement(
-	                                            'span',
-	                                            null,
-	                                            'New Yourk, USA'
-	                                        ),
-	                                        _react2.default.createElement('br', null),
-	                                        _react2.default.createElement(
-	                                            'span',
-	                                            null,
-	                                            '+91-(444)-(333)-(221)'
+	                                            'div',
+	                                            { className: 'col s12 m6 l6' },
+	                                            _react2.default.createElement(
+	                                                'div',
+	                                                { className: 'invoce-company-address right-align' },
+	                                                _react2.default.createElement(
+	                                                    'span',
+	                                                    { className: 'invoice-icon' },
+	                                                    _react2.default.createElement('i', { className: 'mdi-social-location-city cyan-text' })
+	                                                ),
+	                                                _react2.default.createElement(
+	                                                    'p',
+	                                                    null,
+	                                                    _react2.default.createElement(
+	                                                        'span',
+	                                                        { className: 'strong' },
+	                                                        'Company Name LLC'
+	                                                    ),
+	                                                    _react2.default.createElement('br', null),
+	                                                    _react2.default.createElement(
+	                                                        'span',
+	                                                        null,
+	                                                        '125, ABC Street,'
+	                                                    ),
+	                                                    _react2.default.createElement('br', null),
+	                                                    _react2.default.createElement(
+	                                                        'span',
+	                                                        null,
+	                                                        'New Yourk, USA'
+	                                                    ),
+	                                                    _react2.default.createElement('br', null),
+	                                                    _react2.default.createElement(
+	                                                        'span',
+	                                                        null,
+	                                                        '+91-(444)-(333)-(221)'
+	                                                    )
+	                                                )
+	                                            ),
+	                                            _react2.default.createElement(
+	                                                'div',
+	                                                { className: 'invoce-company-contact right-align' },
+	                                                _react2.default.createElement(
+	                                                    'span',
+	                                                    { className: 'invoice-icon' },
+	                                                    _react2.default.createElement('i', { className: 'mdi-communication-quick-contacts-mail cyan-text' })
+	                                                ),
+	                                                _react2.default.createElement(
+	                                                    'p',
+	                                                    null,
+	                                                    _react2.default.createElement(
+	                                                        'span',
+	                                                        { className: 'strong' },
+	                                                        'www.exampledomain.com'
+	                                                    ),
+	                                                    _react2.default.createElement('br', null),
+	                                                    _react2.default.createElement(
+	                                                        'span',
+	                                                        null,
+	                                                        'info@exampledomain.com'
+	                                                    ),
+	                                                    _react2.default.createElement('br', null),
+	                                                    _react2.default.createElement(
+	                                                        'span',
+	                                                        null,
+	                                                        'admin@exampledomain.com'
+	                                                    )
+	                                                )
+	                                            )
 	                                        )
 	                                    )
 	                                ),
 	                                _react2.default.createElement(
 	                                    'div',
-	                                    { className: 'col s12 m6 l6' },
-	                                    _react2.default.createElement(
-	                                        'div',
-	                                        { className: 'invoce-company-address right-align' },
-	                                        _react2.default.createElement(
-	                                            'span',
-	                                            { className: 'invoice-icon' },
-	                                            _react2.default.createElement('i', { className: 'mdi-social-location-city cyan-text' })
-	                                        ),
-	                                        _react2.default.createElement(
-	                                            'p',
-	                                            null,
-	                                            _react2.default.createElement(
-	                                                'span',
-	                                                { className: 'strong' },
-	                                                'Company Name LLC'
-	                                            ),
-	                                            _react2.default.createElement('br', null),
-	                                            _react2.default.createElement(
-	                                                'span',
-	                                                null,
-	                                                '125, ABC Street,'
-	                                            ),
-	                                            _react2.default.createElement('br', null),
-	                                            _react2.default.createElement(
-	                                                'span',
-	                                                null,
-	                                                'New Yourk, USA'
-	                                            ),
-	                                            _react2.default.createElement('br', null),
-	                                            _react2.default.createElement(
-	                                                'span',
-	                                                null,
-	                                                '+91-(444)-(333)-(221)'
-	                                            )
-	                                        )
-	                                    ),
-	                                    _react2.default.createElement(
-	                                        'div',
-	                                        { className: 'invoce-company-contact right-align' },
-	                                        _react2.default.createElement(
-	                                            'span',
-	                                            { className: 'invoice-icon' },
-	                                            _react2.default.createElement('i', { className: 'mdi-communication-quick-contacts-mail cyan-text' })
-	                                        ),
-	                                        _react2.default.createElement(
-	                                            'p',
-	                                            null,
-	                                            _react2.default.createElement(
-	                                                'span',
-	                                                { className: 'strong' },
-	                                                'www.exampledomain.com'
-	                                            ),
-	                                            _react2.default.createElement('br', null),
-	                                            _react2.default.createElement(
-	                                                'span',
-	                                                null,
-	                                                'info@exampledomain.com'
-	                                            ),
-	                                            _react2.default.createElement('br', null),
-	                                            _react2.default.createElement(
-	                                                'span',
-	                                                null,
-	                                                'admin@exampledomain.com'
-	                                            )
-	                                        )
-	                                    )
-	                                )
-	                            )
-	                        ),
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'invoice-lable' },
-	                            _react2.default.createElement(
-	                                'div',
-	                                { className: 'row' },
-	                                _react2.default.createElement(
-	                                    'div',
-	                                    { className: 'col s12 m3 l3 cyan' },
-	                                    _react2.default.createElement(
-	                                        'h4',
-	                                        { className: 'white-text invoice-text' },
-	                                        'INVOICE'
-	                                    )
-	                                ),
-	                                _react2.default.createElement(
-	                                    'div',
-	                                    { className: 'col s12 m9 l9 invoice-brief cyan white-text' },
+	                                    { className: 'invoice-lable' },
 	                                    _react2.default.createElement(
 	                                        'div',
 	                                        { className: 'row' },
 	                                        _react2.default.createElement(
 	                                            'div',
-	                                            { className: 'col s12 m3 l3' },
-	                                            _react2.default.createElement(
-	                                                'p',
-	                                                { className: 'strong' },
-	                                                'Total Due'
-	                                            ),
+	                                            { className: 'col s12 m3 l3 cyan' },
 	                                            _react2.default.createElement(
 	                                                'h4',
-	                                                { className: 'header' },
-	                                                '$ 3,600.00'
+	                                                { className: 'white-text invoice-text' },
+	                                                'INVOICE'
 	                                            )
 	                                        ),
 	                                        _react2.default.createElement(
 	                                            'div',
-	                                            { className: 'col s12 m3 l3' },
+	                                            { className: 'col s12 m9 l9 invoice-brief cyan white-text' },
 	                                            _react2.default.createElement(
-	                                                'p',
-	                                                { className: 'strong' },
-	                                                'Invoice No'
-	                                            ),
-	                                            _react2.default.createElement(
-	                                                'h4',
-	                                                { className: 'header' },
-	                                                'MT_A_124563'
-	                                            )
-	                                        ),
-	                                        _react2.default.createElement(
-	                                            'div',
-	                                            { className: 'col s12 m3 l3' },
-	                                            _react2.default.createElement(
-	                                                'p',
-	                                                { className: 'strong' },
-	                                                'Due Date'
-	                                            ),
-	                                            _react2.default.createElement(
-	                                                'h4',
-	                                                { className: 'header' },
-	                                                '22.05.2015'
-	                                            )
-	                                        )
-	                                    )
-	                                )
-	                            )
-	                        ),
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'invoice-table' },
-	                            _react2.default.createElement(
-	                                'div',
-	                                { className: 'row' },
-	                                _react2.default.createElement(
-	                                    'div',
-	                                    { className: 'col s12 m12 l12' },
-	                                    _react2.default.createElement(
-	                                        'table',
-	                                        { className: 'striped' },
-	                                        _react2.default.createElement(
-	                                            'thead',
-	                                            null,
-	                                            _react2.default.createElement(
-	                                                'tr',
-	                                                null,
+	                                                'div',
+	                                                { className: 'row' },
 	                                                _react2.default.createElement(
-	                                                    'th',
-	                                                    { 'data-field': 'no' },
-	                                                    'No'
+	                                                    'div',
+	                                                    { className: 'col s12 m3 l3' },
+	                                                    _react2.default.createElement(
+	                                                        'p',
+	                                                        { className: 'strong' },
+	                                                        'Total Due'
+	                                                    ),
+	                                                    _react2.default.createElement(
+	                                                        'h4',
+	                                                        { className: 'header' },
+	                                                        '$ 3,600.00'
+	                                                    )
 	                                                ),
 	                                                _react2.default.createElement(
-	                                                    'th',
-	                                                    { 'data-field': 'item' },
-	                                                    'Item'
+	                                                    'div',
+	                                                    { className: 'col s12 m3 l3' },
+	                                                    _react2.default.createElement(
+	                                                        'p',
+	                                                        { className: 'strong' },
+	                                                        'Invoice No'
+	                                                    ),
+	                                                    _react2.default.createElement(
+	                                                        'h4',
+	                                                        { className: 'header' },
+	                                                        'MT_A_124563'
+	                                                    )
 	                                                ),
 	                                                _react2.default.createElement(
-	                                                    'th',
-	                                                    { 'data-field': 'uprice' },
-	                                                    'Unit Price'
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    'th',
-	                                                    { 'data-field': 'price' },
-	                                                    'Unit'
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    'th',
-	                                                    { 'data-field': 'price' },
-	                                                    'Total'
+	                                                    'div',
+	                                                    { className: 'col s12 m3 l3' },
+	                                                    _react2.default.createElement(
+	                                                        'p',
+	                                                        { className: 'strong' },
+	                                                        'Due Date'
+	                                                    ),
+	                                                    _react2.default.createElement(
+	                                                        'h4',
+	                                                        { className: 'header' },
+	                                                        '22.05.2015'
+	                                                    )
 	                                                )
 	                                            )
-	                                        ),
-	                                        _react2.default.createElement(
-	                                            'tbody',
-	                                            null,
-	                                            _react2.default.createElement(
-	                                                'tr',
-	                                                null,
-	                                                _react2.default.createElement(
-	                                                    'td',
-	                                                    null,
-	                                                    '1.'
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    'td',
-	                                                    null,
-	                                                    'MacBook Pro'
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    'td',
-	                                                    null,
-	                                                    '$ 1,299.00'
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    'td',
-	                                                    null,
-	                                                    '2'
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    'td',
-	                                                    null,
-	                                                    '$ 1,100.00'
-	                                                )
-	                                            ),
-	                                            _react2.default.createElement(
-	                                                'tr',
-	                                                null,
-	                                                _react2.default.createElement(
-	                                                    'td',
-	                                                    null,
-	                                                    '2.'
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    'td',
-	                                                    null,
-	                                                    'iMAC'
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    'td',
-	                                                    null,
-	                                                    '$ 1,099.00'
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    'td',
-	                                                    null,
-	                                                    '2'
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    'td',
-	                                                    null,
-	                                                    '$ 2,198.00'
-	                                                )
-	                                            ),
-	                                            _react2.default.createElement(
-	                                                'tr',
-	                                                null,
-	                                                _react2.default.createElement(
-	                                                    'td',
-	                                                    null,
-	                                                    '3.'
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    'td',
-	                                                    null,
-	                                                    'iPhone'
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    'td',
-	                                                    null,
-	                                                    '$ 299.00'
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    'td',
-	                                                    null,
-	                                                    '5'
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    'td',
-	                                                    null,
-	                                                    '$ 1,495.00'
-	                                                )
-	                                            ),
-	                                            _react2.default.createElement(
-	                                                'tr',
-	                                                null,
-	                                                _react2.default.createElement(
-	                                                    'td',
-	                                                    null,
-	                                                    '4.'
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    'td',
-	                                                    null,
-	                                                    'iPad 3'
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    'td',
-	                                                    null,
-	                                                    '$399.00'
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    'td',
-	                                                    null,
-	                                                    '1'
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    'td',
-	                                                    null,
-	                                                    '$ 399.00'
-	                                                )
-	                                            ),
-	                                            _react2.default.createElement(
-	                                                'tr',
-	                                                null,
-	                                                _react2.default.createElement(
-	                                                    'td',
-	                                                    null,
-	                                                    '5.'
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    'td',
-	                                                    null,
-	                                                    'iPod'
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    'td',
-	                                                    null,
-	                                                    '$49.00'
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    'td',
-	                                                    null,
-	                                                    '2'
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    'td',
-	                                                    null,
-	                                                    '$ 98.00'
-	                                                )
-	                                            ),
-	                                            _react2.default.createElement(
-	                                                'tr',
-	                                                null,
-	                                                _react2.default.createElement('td', { colSpan: 3 }),
-	                                                _react2.default.createElement(
-	                                                    'td',
-	                                                    null,
-	                                                    'Sub Total:'
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    'td',
-	                                                    null,
-	                                                    '$ 5,290.00'
-	                                                )
-	                                            ),
-	                                            _react2.default.createElement(
-	                                                'tr',
-	                                                null,
-	                                                _react2.default.createElement('td', { colSpan: 3 }),
-	                                                _react2.default.createElement(
-	                                                    'td',
-	                                                    null,
-	                                                    'Service Tax'
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    'td',
-	                                                    null,
-	                                                    '11.00%'
-	                                                )
-	                                            ),
-	                                            _react2.default.createElement(
-	                                                'tr',
-	                                                null,
-	                                                _react2.default.createElement('td', { colSpan: 3 }),
-	                                                _react2.default.createElement(
-	                                                    'td',
-	                                                    { className: 'cyan white-text' },
-	                                                    'Grand Total'
-	                                                ),
-	                                                _react2.default.createElement(
-	                                                    'td',
-	                                                    { className: 'cyan strong white-text' },
-	                                                    '$ 5,871.90'
-	                                                )
-	                                            )
-	                                        )
-	                                    )
-	                                )
-	                            )
-	                        ),
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'invoice-footer' },
-	                            _react2.default.createElement(
-	                                'div',
-	                                { className: 'row' },
-	                                _react2.default.createElement(
-	                                    'div',
-	                                    { className: 'col s12 m6 l6' },
-	                                    _react2.default.createElement(
-	                                        'p',
-	                                        { className: 'strong' },
-	                                        'Payment Method'
-	                                    ),
-	                                    _react2.default.createElement(
-	                                        'p',
-	                                        null,
-	                                        'Please make the cheque to: AMANDA ORTON'
-	                                    ),
-	                                    _react2.default.createElement(
-	                                        'p',
-	                                        { className: 'strong' },
-	                                        'Terms & Condition'
-	                                    ),
-	                                    _react2.default.createElement(
-	                                        'ul',
-	                                        null,
-	                                        _react2.default.createElement(
-	                                            'li',
-	                                            null,
-	                                            'You know, being a test pilot isn\'t always the healthiest business in the world.'
-	                                        ),
-	                                        _react2.default.createElement(
-	                                            'li',
-	                                            null,
-	                                            'We predict too much for the next year and yet far too little for the next 10.'
 	                                        )
 	                                    )
 	                                ),
 	                                _react2.default.createElement(
 	                                    'div',
-	                                    { className: 'col s12 m6 l6 center-align' },
+	                                    { className: 'invoice-table' },
 	                                    _react2.default.createElement(
-	                                        'p',
-	                                        null,
-	                                        'Approved By'
-	                                    ),
-	                                    _react2.default.createElement('img', { src: 'images/signature-scan.png', alt: 'signature' }),
+	                                        'div',
+	                                        { className: 'row' },
+	                                        _react2.default.createElement(
+	                                            'div',
+	                                            { className: 'col s12 m12 l12' },
+	                                            _react2.default.createElement(
+	                                                'table',
+	                                                { className: 'striped' },
+	                                                _react2.default.createElement(
+	                                                    'thead',
+	                                                    null,
+	                                                    _react2.default.createElement(
+	                                                        'tr',
+	                                                        null,
+	                                                        _react2.default.createElement(
+	                                                            'th',
+	                                                            { 'data-field': 'no' },
+	                                                            'No'
+	                                                        ),
+	                                                        _react2.default.createElement(
+	                                                            'th',
+	                                                            { 'data-field': 'item' },
+	                                                            'Item'
+	                                                        ),
+	                                                        _react2.default.createElement(
+	                                                            'th',
+	                                                            { 'data-field': 'uprice' },
+	                                                            'Unit Price'
+	                                                        ),
+	                                                        _react2.default.createElement(
+	                                                            'th',
+	                                                            { 'data-field': 'price' },
+	                                                            'Unit'
+	                                                        ),
+	                                                        _react2.default.createElement(
+	                                                            'th',
+	                                                            { 'data-field': 'price' },
+	                                                            'Total'
+	                                                        )
+	                                                    )
+	                                                ),
+	                                                _react2.default.createElement(
+	                                                    'tbody',
+	                                                    null,
+	                                                    _react2.default.createElement(
+	                                                        'tr',
+	                                                        null,
+	                                                        _react2.default.createElement(
+	                                                            'td',
+	                                                            null,
+	                                                            '1.'
+	                                                        ),
+	                                                        _react2.default.createElement(
+	                                                            'td',
+	                                                            null,
+	                                                            'MacBook Pro'
+	                                                        ),
+	                                                        _react2.default.createElement(
+	                                                            'td',
+	                                                            null,
+	                                                            '$ 1,299.00'
+	                                                        ),
+	                                                        _react2.default.createElement(
+	                                                            'td',
+	                                                            null,
+	                                                            '2'
+	                                                        ),
+	                                                        _react2.default.createElement(
+	                                                            'td',
+	                                                            null,
+	                                                            '$ 1,100.00'
+	                                                        )
+	                                                    ),
+	                                                    _react2.default.createElement(
+	                                                        'tr',
+	                                                        null,
+	                                                        _react2.default.createElement(
+	                                                            'td',
+	                                                            null,
+	                                                            '2.'
+	                                                        ),
+	                                                        _react2.default.createElement(
+	                                                            'td',
+	                                                            null,
+	                                                            'iMAC'
+	                                                        ),
+	                                                        _react2.default.createElement(
+	                                                            'td',
+	                                                            null,
+	                                                            '$ 1,099.00'
+	                                                        ),
+	                                                        _react2.default.createElement(
+	                                                            'td',
+	                                                            null,
+	                                                            '2'
+	                                                        ),
+	                                                        _react2.default.createElement(
+	                                                            'td',
+	                                                            null,
+	                                                            '$ 2,198.00'
+	                                                        )
+	                                                    ),
+	                                                    _react2.default.createElement(
+	                                                        'tr',
+	                                                        null,
+	                                                        _react2.default.createElement(
+	                                                            'td',
+	                                                            null,
+	                                                            '3.'
+	                                                        ),
+	                                                        _react2.default.createElement(
+	                                                            'td',
+	                                                            null,
+	                                                            'iPhone'
+	                                                        ),
+	                                                        _react2.default.createElement(
+	                                                            'td',
+	                                                            null,
+	                                                            '$ 299.00'
+	                                                        ),
+	                                                        _react2.default.createElement(
+	                                                            'td',
+	                                                            null,
+	                                                            '5'
+	                                                        ),
+	                                                        _react2.default.createElement(
+	                                                            'td',
+	                                                            null,
+	                                                            '$ 1,495.00'
+	                                                        )
+	                                                    ),
+	                                                    _react2.default.createElement(
+	                                                        'tr',
+	                                                        null,
+	                                                        _react2.default.createElement(
+	                                                            'td',
+	                                                            null,
+	                                                            '4.'
+	                                                        ),
+	                                                        _react2.default.createElement(
+	                                                            'td',
+	                                                            null,
+	                                                            'iPad 3'
+	                                                        ),
+	                                                        _react2.default.createElement(
+	                                                            'td',
+	                                                            null,
+	                                                            '$399.00'
+	                                                        ),
+	                                                        _react2.default.createElement(
+	                                                            'td',
+	                                                            null,
+	                                                            '1'
+	                                                        ),
+	                                                        _react2.default.createElement(
+	                                                            'td',
+	                                                            null,
+	                                                            '$ 399.00'
+	                                                        )
+	                                                    ),
+	                                                    _react2.default.createElement(
+	                                                        'tr',
+	                                                        null,
+	                                                        _react2.default.createElement(
+	                                                            'td',
+	                                                            null,
+	                                                            '5.'
+	                                                        ),
+	                                                        _react2.default.createElement(
+	                                                            'td',
+	                                                            null,
+	                                                            'iPod'
+	                                                        ),
+	                                                        _react2.default.createElement(
+	                                                            'td',
+	                                                            null,
+	                                                            '$49.00'
+	                                                        ),
+	                                                        _react2.default.createElement(
+	                                                            'td',
+	                                                            null,
+	                                                            '2'
+	                                                        ),
+	                                                        _react2.default.createElement(
+	                                                            'td',
+	                                                            null,
+	                                                            '$ 98.00'
+	                                                        )
+	                                                    ),
+	                                                    _react2.default.createElement(
+	                                                        'tr',
+	                                                        null,
+	                                                        _react2.default.createElement('td', { colSpan: 3 }),
+	                                                        _react2.default.createElement(
+	                                                            'td',
+	                                                            null,
+	                                                            'Sub Total:'
+	                                                        ),
+	                                                        _react2.default.createElement(
+	                                                            'td',
+	                                                            null,
+	                                                            '$ 5,290.00'
+	                                                        )
+	                                                    ),
+	                                                    _react2.default.createElement(
+	                                                        'tr',
+	                                                        null,
+	                                                        _react2.default.createElement('td', { colSpan: 3 }),
+	                                                        _react2.default.createElement(
+	                                                            'td',
+	                                                            null,
+	                                                            'Service Tax'
+	                                                        ),
+	                                                        _react2.default.createElement(
+	                                                            'td',
+	                                                            null,
+	                                                            '11.00%'
+	                                                        )
+	                                                    ),
+	                                                    _react2.default.createElement(
+	                                                        'tr',
+	                                                        null,
+	                                                        _react2.default.createElement('td', { colSpan: 3 }),
+	                                                        _react2.default.createElement(
+	                                                            'td',
+	                                                            { className: 'cyan white-text' },
+	                                                            'Grand Total'
+	                                                        ),
+	                                                        _react2.default.createElement(
+	                                                            'td',
+	                                                            { className: 'cyan strong white-text' },
+	                                                            '$ 5,871.90'
+	                                                        )
+	                                                    )
+	                                                )
+	                                            )
+	                                        )
+	                                    )
+	                                ),
+	                                _react2.default.createElement(
+	                                    'div',
+	                                    { className: 'invoice-footer' },
 	                                    _react2.default.createElement(
-	                                        'p',
-	                                        { className: 'header' },
-	                                        'AMANDA ORTON'
-	                                    ),
-	                                    _react2.default.createElement(
-	                                        'p',
-	                                        null,
-	                                        'Managing Director'
+	                                        'div',
+	                                        { className: 'row' },
+	                                        _react2.default.createElement(
+	                                            'div',
+	                                            { className: 'col s12 m6 l6' },
+	                                            _react2.default.createElement(
+	                                                'p',
+	                                                { className: 'strong' },
+	                                                'Payment Method'
+	                                            ),
+	                                            _react2.default.createElement(
+	                                                'p',
+	                                                null,
+	                                                'Please make the cheque to: AMANDA ORTON'
+	                                            ),
+	                                            _react2.default.createElement(
+	                                                'p',
+	                                                { className: 'strong' },
+	                                                'Terms & Condition'
+	                                            ),
+	                                            _react2.default.createElement(
+	                                                'ul',
+	                                                null,
+	                                                _react2.default.createElement(
+	                                                    'li',
+	                                                    null,
+	                                                    'You know, being a test pilot isn\'t always the healthiest business in the world.'
+	                                                ),
+	                                                _react2.default.createElement(
+	                                                    'li',
+	                                                    null,
+	                                                    'We predict too much for the next year and yet far too little for the next 10.'
+	                                                )
+	                                            )
+	                                        )
 	                                    )
 	                                )
 	                            )
-	                        )
-	                    ),
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'fixed-action-btn', style: { bottom: 50, right: 19 } },
-	                        _react2.default.createElement(
-	                            'a',
-	                            { className: 'btn-floating btn-large' },
-	                            _react2.default.createElement('i', { className: 'mdi-action-stars' })
 	                        ),
 	                        _react2.default.createElement(
-	                            'ul',
-	                            null,
+	                            'div',
+	                            { className: 'card-content' },
 	                            _react2.default.createElement(
-	                                'li',
-	                                null,
+	                                'div',
+	                                { className: 'fixed-action-btn', style: { bottom: 50, right: 19 } },
 	                                _react2.default.createElement(
 	                                    'a',
-	                                    { href: '#', onClick: this.open.bind(this), className: 'btn-floating red' },
-	                                    _react2.default.createElement('i', { className: 'large mdi-communication-live-help' })
-	                                )
-	                            ),
-	                            _react2.default.createElement(
-	                                'li',
-	                                null,
+	                                    { className: 'btn-floating btn-large' },
+	                                    _react2.default.createElement('i', { className: 'mdi-action-stars' })
+	                                ),
 	                                _react2.default.createElement(
-	                                    'a',
-	                                    { href: 'app-widget.html', className: 'btn-floating yellow darken-1' },
-	                                    _react2.default.createElement('i', { className: 'large mdi-device-now-widgets' })
-	                                )
-	                            ),
-	                            _react2.default.createElement(
-	                                'li',
-	                                null,
-	                                _react2.default.createElement(
-	                                    'a',
-	                                    { href: 'app-calendar.html', className: 'btn-floating green' },
-	                                    _react2.default.createElement('i', { className: 'large mdi-editor-insert-invitation' })
-	                                )
-	                            ),
-	                            _react2.default.createElement(
-	                                'li',
-	                                null,
-	                                _react2.default.createElement(
-	                                    'a',
-	                                    { href: 'app-email.html', className: 'btn-floating blue' },
-	                                    _react2.default.createElement('i', { className: 'large mdi-communication-email' })
+	                                    'ul',
+	                                    null,
+	                                    _react2.default.createElement(
+	                                        'li',
+	                                        null,
+	                                        _react2.default.createElement(
+	                                            'a',
+	                                            { title: 'Generate PDF', onClick: this.open.bind(this), href: '#', className: 'activator btn-floating darken-2' },
+	                                            _react2.default.createElement('i', { className: 'large mdi-file-pdf' })
+	                                        )
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'li',
+	                                        null,
+	                                        _react2.default.createElement(
+	                                            'a',
+	                                            { title: 'Edit Invoice', href: '#', className: 'btn-floating yellow darken-1' },
+	                                            _react2.default.createElement('i', { className: 'large mdi-device-now-widgets' })
+	                                        )
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'li',
+	                                        null,
+	                                        _react2.default.createElement(
+	                                            'a',
+	                                            { title: 'Email Invoice', href: '#', className: 'btn-floating blue' },
+	                                            _react2.default.createElement('i', { className: 'large mdi-communication-email' })
+	                                        )
+	                                    )
 	                                )
 	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'card-reveal' },
+	                            _react2.default.createElement(
+	                                'span',
+	                                { className: 'card-title grey-text text-darken-4' },
+	                                _react2.default.createElement('i', { className: 'mdi-navigation-close right' })
+	                            ),
+	                            _react2.default.createElement('iframe', { id: 'pdfoutput', style: { width: "100%", height: 1180 } })
 	                        )
 	                    )
 	                )
@@ -45586,72 +45586,72 @@
 	
 	var init = [{
 	    id: 1001,
-	    name: "Intel i7 CPU - Skylake - 6700",
-	    unit_price: 5578
+	    name: "Macbook Pro 13\"",
+	    unit_price: 27499
 	}, {
 	    id: 1002,
-	    name: "Intel i3 CPU - Skylake - 6100",
-	    unit_price: 2698
+	    name: "Macbook Pro 15\" - 256GB",
+	    unit_price: 42699
 	}, {
 	    id: 1003,
-	    name: "Intel i5 CPU - Skylake - 6400",
+	    name: "iPhone 6",
 	    unit_price: 3699
 	}, {
 	    id: 1004,
-	    name: "Intel i7 CPU - Skylake - 6700",
+	    name: "iPhone 6 Plus",
 	    unit_price: 5300
 	}, {
 	    id: 1005,
-	    name: "Intel i7 CPU - Skylake - 6700",
+	    name: "iPhone 6s",
 	    unit_price: 5300
 	}, {
 	    id: 1006,
-	    name: "Intel i7 CPU - Skylake - 6700",
+	    name: "iPhone 6s Plus",
 	    unit_price: 5300
 	}, {
 	    id: 1007,
-	    name: "Intel i7 CPU - Skylake - 6700",
+	    name: "iPhone 7",
 	    unit_price: 5300
 	}, {
 	    id: 1008,
-	    name: "Intel i7 CPU - Skylake - 6700",
+	    name: "iPhone SE",
 	    unit_price: 5300
 	}, {
 	    id: 1009,
-	    name: "Intel i7 CPU - Skylake - 6700",
-	    unit_price: 5300
+	    name: "Apple TV - 64GB",
+	    unit_price: 3699
 	}, {
 	    id: 1010,
-	    name: "Intel i7 CPU - Skylake - 6700",
-	    unit_price: 5300
+	    name: "Apple TV - 32GB",
+	    unit_price: 2499
 	}, {
 	    id: 1011,
-	    name: "Intel i7 CPU - Skylake - 6700",
-	    unit_price: 5300
+	    name: "Macbook Pro 15\" - 512GB",
+	    unit_price: 42699
 	}, {
 	    id: 1012,
-	    name: "Intel i7 CPU - Skylake - 6700",
+	    name: "iPad Pro - 9.7\" ",
 	    unit_price: 5300
 	}, {
 	    id: 1013,
-	    name: "Intel i7 CPU - Skylake - 6700",
+	    name: "iPad Pro - 12.9\" ",
 	    unit_price: 5300
 	}, {
 	    id: 1014,
-	    name: "Intel i7 CPU - Skylake - 6700",
-	    unit_price: 5300
+	    name: "iPad Air 2 - 128GB",
+	    unit_price: 11499
 	}, {
 	    id: 1015,
-	    name: "Intel i7 CPU - Skylake - 6700",
+	    name: "iPad Air 2 - 32GB",
 	    unit_price: 5300
 	}, {
 	    id: 1016,
-	    name: "Intel i7 CPU - Skylake - 6700",
-	    unit_price: 5300
+	    name: "iPad Mini 4 - WiFi - 128GB",
+	    unit_price: 9499
 	}, {
 	    id: 1017,
-	    name: "Intel i7 CPU - Skylake - 6700",
-	    unit_price: 5300
+	    name: "iPad Mini 4 - WiFi - 64GB",
+	    unit_price: 8499
 	}];
 	
 	exports.default = function () {
@@ -46638,6 +46638,24 @@
 	    });
 	}());
 
+
+/***/ },
+/* 388 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	exports.default = function (data) {
+	    return {
+	        content: [{
+	            text: "Invoice Generation"
+	        }]
+	    };
+	};
 
 /***/ }
 /******/ ]);
