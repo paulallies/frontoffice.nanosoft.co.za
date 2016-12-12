@@ -23942,7 +23942,7 @@
 	                                        null,
 	                                        _react2.default.createElement(
 	                                            'a',
-	                                            { href: '#' },
+	                                            { href: '/login' },
 	                                            _react2.default.createElement('i', { className: 'mdi-hardware-keyboard-tab' }),
 	                                            ' Logout'
 	                                        ),
