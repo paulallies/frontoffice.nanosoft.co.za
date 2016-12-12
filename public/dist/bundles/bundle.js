@@ -43782,6 +43782,7 @@
 	            var iframe = document.createElement('iframe');
 	            iframe.setAttribute('style', 'position:absolute;top:0;right:0;height:100%; width:600px');
 	            document.body.appendChild(iframe);
+	            pdf.fromHTML($('#invoice').get(0));
 	            iframe.src = pdf.output('datauristring');
 	        }
 	    }, {
@@ -44326,7 +44327,7 @@
 	                                null,
 	                                _react2.default.createElement(
 	                                    'a',
-	                                    { href: 'css-helpers.html', className: 'btn-floating red' },
+	                                    { href: '#', onClick: this.open.bind(this), className: 'btn-floating red' },
 	                                    _react2.default.createElement('i', { className: 'large mdi-communication-live-help' })
 	                                )
 	                            ),
