@@ -16,3 +16,11 @@ select[name='data-table-simple_length'] {
 .dark {
     background-color: #1A535C
 }
+
+.dark-text {
+    color: #1A535C;
+}
+
+footer.page-footer {
+    background-color: #1A535C
+}

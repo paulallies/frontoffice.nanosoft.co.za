@@ -43451,7 +43451,7 @@
 	                                    { className: 'card-move-up waves-effect waves-block waves-light' },
 	                                    _react2.default.createElement(
 	                                        'div',
-	                                        { className: 'move-up cyan darken-1' },
+	                                        { className: 'move-up dark darken-1' },
 	                                        _react2.default.createElement(
 	                                            'div',
 	                                            null,
@@ -43889,7 +43889,7 @@
 	                                                _react2.default.createElement(
 	                                                    'span',
 	                                                    { className: 'invoice-icon' },
-	                                                    _react2.default.createElement('i', { className: 'mdi-social-location-city cyan-text' })
+	                                                    _react2.default.createElement('i', { className: 'mdi-social-location-city dark-text' })
 	                                                ),
 	                                                _react2.default.createElement(
 	                                                    'p',
@@ -43925,7 +43925,7 @@
 	                                                _react2.default.createElement(
 	                                                    'span',
 	                                                    { className: 'invoice-icon' },
-	                                                    _react2.default.createElement('i', { className: 'mdi-communication-quick-contacts-mail cyan-text' })
+	                                                    _react2.default.createElement('i', { className: 'mdi-communication-quick-contacts-mail dark-text' })
 	                                                ),
 	                                                _react2.default.createElement(
 	                                                    'p',
@@ -43960,7 +43960,7 @@
 	                                        { className: 'row' },
 	                                        _react2.default.createElement(
 	                                            'div',
-	                                            { className: 'col s12 m3 l3 cyan' },
+	                                            { className: 'col s12 m3 l3 dark' },
 	                                            _react2.default.createElement(
 	                                                'h4',
 	                                                { className: 'white-text invoice-text' },
@@ -43969,7 +43969,7 @@
 	                                        ),
 	                                        _react2.default.createElement(
 	                                            'div',
-	                                            { className: 'col s12 m9 l9 invoice-brief cyan white-text' },
+	                                            { className: 'col s12 m9 l9 invoice-brief dark white-text' },
 	                                            _react2.default.createElement(
 	                                                'div',
 	                                                { className: 'row' },
@@ -44248,12 +44248,12 @@
 	                                                        _react2.default.createElement('td', { colSpan: 3 }),
 	                                                        _react2.default.createElement(
 	                                                            'td',
-	                                                            { className: 'cyan white-text' },
+	                                                            { className: 'dark white-text' },
 	                                                            'Grand Total'
 	                                                        ),
 	                                                        _react2.default.createElement(
 	                                                            'td',
-	                                                            { className: 'cyan strong white-text' },
+	                                                            { className: 'dark strong white-text' },
 	                                                            '$ 5,871.90'
 	                                                        )
 	                                                    )
