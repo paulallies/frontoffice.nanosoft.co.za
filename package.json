@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/paulallies/frontoffice.nanosoft.co.za#readme",
   "dependencies": {
+    "firebase": "^3.6.9",
     "moment": "^2.17.1",
     "next": "^1.2.3",
     "numeral": "^2.0.1",
